@@ -1,5 +1,9 @@
+from data_structures.linked_stack import LinkedStack
+
 class NavigationManager:
     def __init__(self):
+        self.back_address = LinkedStack()
+        self.forward_address = LinkedStack()
         self.current_address = None
     
     def get_current_address(self):
@@ -9,7 +13,11 @@ class NavigationManager:
         """
         Time complexity analysis goes here.
         """
-        pass
+        if self.current_address is not None:
+            self.back_address.push(self.current_address)
+
+        self.current_address = address
+        self.forward_address.clear()
     
     def back_button_pressed(self):
         """
