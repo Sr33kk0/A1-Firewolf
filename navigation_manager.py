@@ -1,9 +1,9 @@
 class NavigationManager:
     def __init__(self):
-        pass
+        self.current_address = None
     
     def get_current_address(self):
-        pass
+        return self.current_address
 
     def go_to(self, address):
         """
