@@ -23,13 +23,28 @@ class NavigationManager:
         """
         Time complexity analysis goes here.
         """
-        pass
+        if self.current_address is None:
+            return
+
+        self.forward_address.push(self.current_address)
+
+        if self.back_address.is_empty():
+            self.current_address = None
+        else:
+            self.current_address = self.back_address.pop()
+        
     
     def forward_button_pressed(self):
         """
         Time complexity analysis goes here.
         """
-        pass
+        if self.forward_address.is_empty():
+            return
+
+        if self.current_address is not None:
+            self.back_address.push(self.current_address)
+
+        self.current_address = self.forward_address.pop()
     
     def report_address_prefix_count(self, address_prefix):
         """
@@ -40,14 +55,25 @@ class NavigationManager:
 
 if __name__ == "__main__":
     nav = NavigationManager()
+    print(nav.get_current_address()) 
     nav.go_to("google.com")
     nav.go_to("github.com")
     nav.go_to("monash.edu")
     print(nav.get_current_address())  # monash.edu
     nav.back_button_pressed()
     print(nav.get_current_address())  # github.com
-    nav.forward_button_pressed()
+    nav.back_button_pressed()
     print(nav.get_current_address())  # monash.edu
+    nav.back_button_pressed()
+    print(nav.get_current_address()) 
+    nav.forward_button_pressed()
+    print(nav.get_current_address()) 
+    nav.forward_button_pressed()
+    print(nav.get_current_address()) 
+    nav.forward_button_pressed()
+    print(nav.get_current_address()) 
+    nav.forward_button_pressed()
+    print(nav.get_current_address()) 
 
     # Assertions are a great way of testing your code without checking the print outputs.
     assert nav.get_current_address() == "monash.edu"
