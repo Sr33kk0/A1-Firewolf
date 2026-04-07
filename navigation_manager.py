@@ -56,15 +56,19 @@ class NavigationManager:
         """
         if len(self.visits) == 0:
             return 0
-
-        low = 0
-        high = len(self.visits) - 1
-        while low < high:
-            middle = (low + high) // 2
-            if self.visits[middle] < address_prefix:
-                low = middle + 1
-            else:
-                high = middle
+        elif self.visits[0].startswith(address_prefix):
+            low = 0 
+        elif address_prefix > self.visits[-1]:
+            return 0
+        else:
+            low = 0
+            high = len(self.visits) - 1
+            while low < high:
+                middle = (low + high) // 2
+                if self.visits[middle] >= address_prefix:
+                    high = middle
+                else:
+                    low = middle + 1
 
         count = 0
         for i in range(low, len(self.visits)):
