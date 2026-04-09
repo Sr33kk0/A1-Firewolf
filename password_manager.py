@@ -51,9 +51,12 @@ class PasswordManager:
         Best case happens when the account already exists where getting the account using binary search takes O(log N)
         Then, iterate through all password history, O(P) 
 
-        Worst case is O(N) where N is total accounts and P is the maximum password per account
-        Worst case happens when the account does not exist and must be inserted into the ArraySortedList taking O(N) to shift elements
-        As the account is brand new, len(account.password_history) returns 0, skipping the for loop check
+        Worst case is O(N + P) where N is total accounts and P is the maximum password per account
+        Worst case happens when:
+        1.The account does not exist and must be inserted into the ArraySortedList taking O(N) to shift elements
+            As the account is brand new, len(account.password_history) returns 0, skipping the for loop check
+        2. The account exists, iterating through a full password history takes O(P)
+        Overall: O(N+P)
         """
         account = self.get_account(website, username) #log N
 
