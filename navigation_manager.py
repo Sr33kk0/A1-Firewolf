@@ -13,7 +13,13 @@ class NavigationManager:
 
     def go_to(self, address):
         """
-        Time complexity analysis goes here.
+        :complexity: Best case is O(log N) where N is the number of past visits.
+        Best case happens when the address is added at the end of the ArraySortedList. 
+        The binary search takes O(log N) to find the index while no shuffling is needed
+
+        Worst case is O(N) where N is the number of past visits. 
+        Worst case happens when the address is inserted at the beginning of the ArraySortedList.
+        It requires all elements to be shifted to the right, which is O(N)
         """
         if self.current_address is not None:
             self.back_address.push(self.current_address)
@@ -25,7 +31,8 @@ class NavigationManager:
     
     def back_button_pressed(self):
         """
-        Time complexity analysis goes here.
+        :complexity: Best/Worst case is O(1).
+        Pushing and popping a LinkedStack takes constant time only. Thus, O(1)
         """
         if self.current_address is None:
             return
@@ -40,7 +47,8 @@ class NavigationManager:
     
     def forward_button_pressed(self):
         """
-        Time complexity analysis goes here.
+        :complexity: Best/Worst case is O(1).
+        Pushing and popping a LinkedStack takes constant time only. Thus, O(1)
         """
         if self.forward_address.is_empty():
             return
@@ -52,7 +60,16 @@ class NavigationManager:
     
     def report_address_prefix_count(self, address_prefix):
         """
-        Time complexity analysis goes here.
+        :complexity: Best case is O(1).
+        Best case happens when visits ArraySortedList is empty, 
+        or when address_prefix is greater than every stored visit.
+        In both cases the method returns 0 immediately.
+
+        Worst case is O(N) where N is the number of entries in self.visits.
+        Worst case happens when every visit matches address_prefix, causing the for loop
+        to iterate all N times. 
+        The binary search runs in O(log N).
+        (log N + N) = O(N) overall.
         """
         if len(self.visits) == 0:
             return 0
