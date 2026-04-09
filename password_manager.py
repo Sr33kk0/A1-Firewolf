@@ -47,9 +47,15 @@ class PasswordManager:
 
     def set_password(self, website, username, password):
         """
-        Time complexity analysis goes here.
+        :complexity: Best case is O(log N + P) where N is total accounts and P is the maximum password per account
+        Best case happens when the account already exists where getting the account using binary search takes O(log N)
+        Then, iterate through all password history, O(P) 
+
+        Worst case is O(N) where N is total accounts and P is the maximum password per account
+        Worst case happens when the account does not exist and must be inserted into the ArraySortedList taking O(N) to shift elements
+        As the account is brand new, len(account.password_history) returns 0, skipping the for loop check
         """
-        account = self.get_account(website, username)
+        account = self.get_account(website, username) #log N
 
         if account is None:
             account = Account(website, username, self.max_passwords)
@@ -78,7 +84,8 @@ class PasswordManager:
 
     def get_password(self, website, username):
         """
-        Time complexity analysis goes here.
+        :complexity: Best/Worst case is O(log N) where N is total accounts
+        Getting the account using binary search takes O(log N)
         """
         account = self.get_account(website, username)
         
