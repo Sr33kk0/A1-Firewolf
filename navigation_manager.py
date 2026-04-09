@@ -17,7 +17,7 @@ class NavigationManager:
         Best case happens when the address is added at the end of the ArraySortedList. 
         The binary search takes O(log N) to find the index while no shuffling is needed
 
-        Worst case is O(N) where N is the number of past visits. 
+        Worst case is O(N) where N is the number of past visits.
         Worst case happens when the address is inserted at the beginning of the ArraySortedList.
         It requires all elements to be shifted to the right, which is O(N)
         """
@@ -61,9 +61,9 @@ class NavigationManager:
     def report_address_prefix_count(self, address_prefix):
         """
         :complexity: Best case is O(1).
-        Best case happens when visits ArraySortedList is empty, 
-        or when address_prefix is greater than every stored visit.
-        In both cases the method returns 0 immediately.
+        Best case happens when visits ArraySortedList is empty returns 0 immediately., 
+        or when address_prefix is greater than every stored visit returns 0 immediately,
+        or when the first visit is the only element with address_prefix where the for loop only iterates 1 time.
 
         Worst case is O(N) where N is the number of entries in self.visits.
         Worst case happens when every visit matches address_prefix, causing the for loop
