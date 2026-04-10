@@ -61,9 +61,10 @@ class NavigationManager:
     def report_address_prefix_count(self, address_prefix):
         """
         :complexity: Best case is O(1).
-        Best case happens when visits ArraySortedList is empty returns 0 immediately., 
-        or when address_prefix is greater than every stored visit returns 0 immediately,
-        or when the first visit is the only element with address_prefix where the for loop only iterates 1 time.
+        Best case happens when:
+        1. visits ArraySortedList is empty returns 0 immediately
+        2. address_prefix is greater than every stored visit returns 0 immediately
+        3. The first visit is the only element with address_prefix where the for loop only iterates 1 time.
 
         Worst case is O(N) where N is the number of entries in self.visits.
         Worst case happens when every visit matches address_prefix, causing the for loop
