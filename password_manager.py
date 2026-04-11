@@ -55,7 +55,7 @@ class PasswordManager:
         Worst case happens when:
         1.The account does not exist and must be inserted into the ArraySortedList taking O(N) to shift elements
             As the account is brand new, len(account.password_history) returns 0, skipping the for loop check
-        2. The account exists P(log N), iterating through a full password history takes O(P)
+        2. The account exists O(log N), iterating through a full password history takes O(P)
         Overall: O(N+P)
         """
         account = self.get_account(website, username) #log N
